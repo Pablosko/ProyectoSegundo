@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void Interaction();
 public class PlayerController : MonoBehaviour
 {
+    
     // Start is called before the first frame update
     CameraController cam;
     private Rigidbody rb;
     public float acceleration;
     public float maxSpeed;
+    public Interaction interaction;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -16,6 +20,16 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        Movement();
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            interaction();
+        }
+    }
+
+    public void Movement()
     {
         if (Input.GetKey(KeyCode.W))
         {
@@ -34,6 +48,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(transform.right * -acceleration);
         }
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+
 
     }
 }

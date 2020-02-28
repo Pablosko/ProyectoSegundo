@@ -14,6 +14,7 @@ public class CameraController : MonoBehaviour
     public State state;
     public float sensibility;
     public Vector3 Offset;
+    public float YAxisAngleLock = 90;
     void Start()
     {
         camera = GetComponent<Camera>();
@@ -25,7 +26,16 @@ public class CameraController : MonoBehaviour
     {
         float x = sensibility * Input.GetAxis("Mouse X");
         float y = sensibility * -Input.GetAxis("Mouse Y");
-        camera.transform.Rotate(y, 0, 0);
+
+        float temp = camera.transform.rotation.x + y;
+        Quaternion cameraRotation = camera.transform.rotation;
+
+
+
+        LockCameraMovement(cameraRotation);
+
+
+        camera.transform.localRotation = cameraRotation;
         GameController.instance.player.transform.Rotate(0, x, 0);
     }
     public void SwitchView(State newState)
@@ -42,5 +52,20 @@ public class CameraController : MonoBehaviour
             camera.transform.localPosition = Offset;
         }
         state = newState;
+    }
+    private Quaternion LockCameraMovement(Quaternion q)
+    {
+        q.x /= q.w;
+        q.y /= q.w;
+        q.z /= q.w;
+        q.w = 1.0f;
+
+        var angleX = 2.0f * Mathf.Rad2Deg * Mathf.Atan(q.x);
+
+        angleX = Mathf.Clamp(angleX, -YAxisAngleLock, YAxisAngleLock);
+
+        q.x = Mathf.Tan(0.5f * Mathf.Deg2Rad * angleX);
+
+        return q;
     }
 }
