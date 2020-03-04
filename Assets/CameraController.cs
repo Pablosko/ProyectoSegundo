@@ -27,12 +27,12 @@ public class CameraController : MonoBehaviour
         float x = sensibility * Input.GetAxis("Mouse X");
         float y = sensibility * -Input.GetAxis("Mouse Y");
 
-        float temp = camera.transform.rotation.x + y;
-        Quaternion cameraRotation = camera.transform.rotation;
+        float temp = camera.transform.localRotation.x + y;
+        Quaternion cameraRotation = camera.transform.localRotation;
 
 
 
-        LockCameraMovement(cameraRotation);
+        //LockCameraMovement(cameraRotation);
 
 
         camera.transform.localRotation = cameraRotation;
