@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        Debug.Log(line);
     }
     void Start()
     {

@@ -32,6 +32,7 @@ public class Delayer : Node
     void Start()
     {
         timeTxt.text = "" + delayTime;
+        SpawnLine();
     }
 
     void Update()
