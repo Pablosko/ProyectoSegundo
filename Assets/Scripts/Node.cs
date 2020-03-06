@@ -5,9 +5,10 @@ using UnityEngine;
 public class Node : MonoBehaviour
 {
     public Transform nextPoint;
-    public GameObject lineGameObject;
+    GameObject lineGameObject;
     void Start()
     {
+        lineGameObject = GameController.instance.line;
         SpawnLine();
     }
 
@@ -16,7 +17,7 @@ public class Node : MonoBehaviour
         print("entra");
         if (other.GetComponent<Electricity>() != null)
         {
-            other.GetComponent<Electricity>().UpdateTarget(nextPoint);
+            ComponentAction(other.GetComponent<Electricity>());
         }
     }
     public void SpawnLine()
@@ -30,5 +31,9 @@ public class Node : MonoBehaviour
         line.GetComponent<RectTransform>().sizeDelta = new Vector2(dir.magnitude - GetComponent<RectTransform>().sizeDelta.x/2, 100);
 
         line.GetComponent<RectTransform>().localRotation = Quaternion.Euler(0, 0, angle);
+    }
+    public virtual void ComponentAction(Electricity electricty)
+    {
+        electricty.UpdateTarget(nextPoint);
     }
 }

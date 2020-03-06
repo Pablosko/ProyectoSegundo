@@ -31,7 +31,7 @@ RectTransform:
   m_GameObject: {fileID: 3732002174895036249}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.20985365, y: 0.20985365, z: 0.20985365}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -105,6 +105,8 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   speed: 2
+  currentTime: 0
+  stop: 0
 --- !u!58 &6268035810814874249
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
     public static GameController instance;
     public PlayerController player;
     public CameraController camController;
+    public GameObject line;
     // Start is called before the first frame update
     private void Awake()
     {
