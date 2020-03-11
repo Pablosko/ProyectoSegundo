@@ -28,15 +28,17 @@ public class CameraController : MonoBehaviour
         float y = sensibility * -Input.GetAxis("Mouse Y");
 
         float temp = camera.transform.localRotation.x + y;
-        Quaternion cameraRotation = camera.transform.localRotation;
 
 
 
+        //Quaternion cameraRotation = camera.transform.localRotation;
         //LockCameraMovement(cameraRotation);
+        //camera.transform.localRotation = cameraRotation;
 
 
-        camera.transform.localRotation = cameraRotation;
         GameController.instance.player.transform.Rotate(0, x, 0);
+        camera.transform.Rotate(y, 0, 0);
+
     }
     public void SwitchView(State newState)
     {

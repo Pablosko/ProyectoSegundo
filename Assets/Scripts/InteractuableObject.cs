@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InteractuableObject : MonoBehaviour
 {
     GameObject descriptionText;
     GameObject pressKeyText;
+    public string MsgTxt = "Press E to Interact"; //default
 
     void Start()
     {
@@ -17,6 +19,7 @@ public class InteractuableObject : MonoBehaviour
         {
             pressKeyText = transform.GetChild(0).gameObject;
             pressKeyText.SetActive(true);
+            pressKeyText.GetComponent<Text>().text = MsgTxt;
             GameController.instance.player.interaction = ObjectInteraction;
         }
     }

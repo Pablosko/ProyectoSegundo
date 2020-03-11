@@ -35,10 +35,6 @@ public class Delayer : Node
         SpawnLine();
     }
 
-    void Update()
-    {
-       
-    }
     public override void ComponentAction(Electricity electricty)
     {
         currentTime = 0;

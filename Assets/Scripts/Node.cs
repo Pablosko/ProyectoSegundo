@@ -5,12 +5,10 @@ using UnityEngine;
 public class Node : MonoBehaviour
 {
     public Transform nextPoint;
-    public GameObject lineGameObject;
-    public Transform lineParent;
+    GameObject lineGameObject;
+    Transform lineParent;
     void Start()
     {
-        lineGameObject = GameController.instance.line;
-        lineParent = transform.parent.GetChild(0);
         SpawnLine();
     }
 
@@ -24,6 +22,8 @@ public class Node : MonoBehaviour
     }
     public void SpawnLine()
     {
+        lineParent = transform.parent.GetChild(0);
+        lineGameObject = GameController.instance.line;
         GameObject line = Instantiate(lineGameObject, lineParent);
         line.transform.localPosition = transform.localPosition;
         Vector3 dir = nextPoint.localPosition - transform.localPosition;

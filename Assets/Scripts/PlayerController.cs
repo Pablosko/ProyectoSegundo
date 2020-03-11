@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     {
         Movement();
 
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             interaction();
         }
