@@ -8,6 +8,9 @@ public class GameController : MonoBehaviour
     public PlayerController player;
     public CameraController camController;
     public GameObject line;
+    public GameObject puzzleCanvasO;
+    public GameObject MainCanvasO;
+    public GameObject CurrentPuzzle;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -26,5 +29,10 @@ public class GameController : MonoBehaviour
         {
             camController.SwitchView((State)(camController.state + 1));
         }
+    }
+    public void ChangeCanvas(bool puzzle)
+    {
+        GameController.instance.puzzleCanvasO.SetActive(puzzle);
+        GameController.instance.MainCanvasO.SetActive(!puzzle);
     }
 }

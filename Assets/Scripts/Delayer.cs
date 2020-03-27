@@ -32,7 +32,8 @@ public class Delayer : Node
     void Start()
     {
         timeTxt.text = "" + delayTime;
-        SpawnLine();
+        SpawnLine(nextPoint);
+        UpdateHud();
     }
 
     public override void ComponentAction(Electricity electricty)

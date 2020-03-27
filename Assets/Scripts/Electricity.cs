@@ -10,6 +10,7 @@ public class Electricity : MonoBehaviour
     public float intensity;
     public float currentTime;
     public bool stop;
+    public float power;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,5 +34,9 @@ public class Electricity : MonoBehaviour
     {
         direction = target - transform.localPosition;
         transform.Translate(direction.normalized * speed);
+    }
+    public void AddPower(int resistence)
+    {
+        power += resistence;
     }
 }

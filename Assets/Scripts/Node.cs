@@ -1,15 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Node : MonoBehaviour
 {
     public Transform nextPoint;
     GameObject lineGameObject;
     Transform lineParent;
+    public bool endPoint;
+    public int powerVariaton;
+    public int requiredPower;
+
+    public Text powerVariationtxt;
+    public Text requiredPowertxt;
+
     void Start()
     {
-        SpawnLine();
+        if(nextPoint != null)
+        SpawnLine(nextPoint);
+
+        UpdateHud();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -20,7 +31,7 @@ public class Node : MonoBehaviour
             ComponentAction(other.GetComponent<Electricity>());
         }
     }
-    public void SpawnLine()
+    public void SpawnLine(Transform nextPoint)
     {
         lineParent = transform.parent.GetChild(0);
         lineGameObject = GameController.instance.line;
@@ -36,6 +47,40 @@ public class Node : MonoBehaviour
     }
     public virtual void ComponentAction(Electricity electricty)
     {
-        electricty.UpdateTarget(nextPoint);
+        if (electricty.power >= requiredPower)
+        {
+            electricty.AddPower(-powerVariaton);
+            if (endPoint)
+            {
+                Destroy(electricty.gameObject);
+                GameController.instance.ChangeCanvas(false);
+                Destroy(GameController.instance.CurrentPuzzle);
+            }
+            else
+            {
+                electricty.UpdateTarget(nextPoint);
+            }
+        }
+        else
+        {
+            Destroy(electricty.gameObject);
+            print("Si no tiene el power necesario");
+            //Si no tiene el power necesario
+        }
+    }
+    public virtual void UpdateHud()
+    {
+        UpdateText("powerVariationtxt", ref powerVariationtxt, powerVariaton, "-", "");
+        UpdateText("requiredPowertxt", ref requiredPowertxt, powerVariaton, "", "");
+    }
+    public void UpdateText(string textstr, ref Text text,int variable,string prefix,string sufijx)
+    {
+        text = transform.Find(textstr).GetComponent<Text>();
+        if (text == null)
+            return;
+
+        text.text = "";
+        if(variable != 0)
+            text.text = prefix + variable.ToString() + sufijx;
     }
 }
