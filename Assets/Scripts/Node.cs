@@ -8,7 +8,6 @@ public class Node : MonoBehaviour
     public Transform nextPoint;
     GameObject lineGameObject;
     Transform lineParent;
-    public bool endPoint;
     public int powerVariaton;
     public int requiredPower;
 
@@ -50,16 +49,7 @@ public class Node : MonoBehaviour
         if (electricty.power >= requiredPower)
         {
             electricty.AddPower(-powerVariaton);
-            if (endPoint)
-            {
-                Destroy(electricty.gameObject);
-                GameController.instance.ChangeCanvas(false);
-                Destroy(GameController.instance.CurrentPuzzle);
-            }
-            else
-            {
-                electricty.UpdateTarget(nextPoint);
-            }
+            electricty.UpdateTarget(nextPoint);
         }
         else
         {

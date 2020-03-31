@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class Door : InteractuableObject
 {
+    public GameObject part1;
+    public GameObject part2;
+    public float howMuchMove;
     // Start is called before the first frame update
     IEnumerator OpenDoor()
     {
-        while (transform.rotation.y < 90 && transform.rotation.y > -90)
+        while (part2.transform.localPosition.z < howMuchMove)
         {
-            transform.Rotate(0, 1, 0, Space.Self);
+            part1.transform.Translate(Vector3.back * 1 * 0.05f);
+            part2.transform.Translate(Vector3.back * -1 * 0.05f);
             yield return Time.deltaTime;
         }
 
     }
     void Start()
     {
-        
+      
     }
 
     // Update is called once per frame
@@ -25,8 +29,8 @@ public class Door : InteractuableObject
     }
     public override void ObjectInteraction()
     {
-        StartCoroutine(OpenDoor());
+            StartCoroutine(OpenDoor());
 
-        print("me abro");
+            print("me abro");
     }
 }

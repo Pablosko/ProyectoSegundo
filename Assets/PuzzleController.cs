@@ -5,6 +5,7 @@ using UnityEngine;
 public class PuzzleController : MonoBehaviour
 {
     public GameObject Canvas;
+    public StartPuzzle puzzleStartedBy;
     // Start is called before the first frame update
     void Start()
     {

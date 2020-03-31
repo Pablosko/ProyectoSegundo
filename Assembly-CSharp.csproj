@@ -62,6 +62,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Cable.cs" />
+    <Compile Include="Assets\elevator.cs" />
+    <Compile Include="Assets\EndPoint.cs" />
+    <Compile Include="Assets\PowerSwitch.cs" />
     <Compile Include="Assets\PuzzleController.cs" />
     <Compile Include="Assets\Scripts\AND.cs" />
     <Compile Include="Assets\Scripts\Button.cs" />
